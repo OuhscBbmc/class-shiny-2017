@@ -19,8 +19,12 @@ fluidPage(
                   min = 0, max = 1, value = 0.5, step= 0.1),
 
       # Specification of range within an interval
-      sliderInput("range", "Range:",
+      sliderInput("range", "Min & Max:",
                   min = 1, max = 1000, value = c(200,500)),
+
+      # Specification of minimum of an interval
+      sliderInput("minimum", "Min:",
+                  min = 1, max = 1000, value = c(200)),
 
       # Provide a custom currency format for value display,
 		# with basic animation
@@ -37,7 +41,7 @@ fluidPage(
 
     # Show a table summarizing the values entered
     mainPanel(
-      tableOutput("values")
+      tableOutput("values222")
     )
   )
 )

@@ -11,19 +11,21 @@ function(input, output) {
     data.frame(
       Name = c("Integer",
                "Decimal",
-               "Range",
+               "Min & Max",
+               "Minimum",
                "Custom Format",
                "Animation"),
       Value = as.character(c(input$integer,
                              input$decimal,
                              paste(input$range, collapse=' '),
+                             input$minimum + 1000,
                              input$format,
                              input$animation)),
       stringsAsFactors=FALSE)
   })
 
   # Show the values using an HTML table
-  output$values <- renderTable({
+  output$values222 <- renderTable({
     sliderValues()
   })
 }
