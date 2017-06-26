@@ -18,11 +18,12 @@ shinyUI(fluidPage(
       selectizeInput(
         inputId    = 'e6',
         label      = '6. Placeholder',
-        choices    = c("eruptions", "waiting"),
+        # choices    = c("eruptions", "waiting"),
+        choices    = colnames(faithful),
         # selected   = "eruptions",
         options    = list(
           placeholder = 'Please select an option below',
-          onInitialize = I('function() { this.setValue("eruptions"); }')
+          onInitialize = I(sprintf('function() { this.setValue("%s"); }', colnames(faithful)[1]))
         )
       )
     ), #Close the sidebar panel
