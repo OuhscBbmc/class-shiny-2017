@@ -17,7 +17,7 @@ shinyUI(fluidPage(
       # of a normal character string
       selectizeInput(
         inputId    = 'e6',
-        label      = '6. Placeholder',
+        label      = 'Placeholder',
         # choices    = c("eruptions", "waiting"),
         choices    = colnames(faithful),
         # selected   = "eruptions",
@@ -27,9 +27,15 @@ shinyUI(fluidPage(
         )
       )
     ), #Close the sidebar panel
-
+    
     mainPanel(
-      plotOutput("distPlot")
+      plotOutput("distPlot"),
+      p("This is a histogram of the either", code(strong("Number of Eruptions")), "or", code(strong("Waiting Time.")), 
+        style = "font-family: 'times'; font-si16pt"),
+      dataTableOutput("stats")
     ) # Close the main panel
   ) # Close the layout
 )) # Close the page
+
+
+
