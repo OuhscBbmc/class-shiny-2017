@@ -25,13 +25,21 @@ shinyUI(fluidPage(
           placeholder = 'Please select an option below',
           onInitialize = I(sprintf('function() { this.setValue("%s"); }', colnames(faithful)[1]))
         )
-      )
+      ),
+      
+      textInput(
+        inputId = "explain_graph",
+        label   = "Write something about the graph here.",
+        width   = '300%'),
+      
+      submitButton("Submit")
     ), #Close the sidebar panel
     
     mainPanel(
       plotOutput("distPlot"),
       p("Note: This is a histogram of the either", code(strong("Number of Eruptions")), "or", code(strong("Waiting Time.")), 
         style = "font-family: 'times'; font-si16pt"),
+      verbatimTextOutput("explain_graph"),
       dataTableOutput("stats")
     ) # Close the main panel
   ) # Close the layout

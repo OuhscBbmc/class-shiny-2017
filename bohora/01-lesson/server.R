@@ -12,6 +12,10 @@ shinyServer(function(input, output){
          xlab = paste("Number of", Hmisc::capitalize(selected_column_name)))
   })
   
+  output$explain_graph <- renderText({
+    paste("Graph explanation: ", input$explain_graph)
+  })
+  
   output$stats <- renderDataTable({
     library(DT)
     selected_column_name    <- input$e6
