@@ -30,7 +30,7 @@ shinyUI(fluidPage(
     
     mainPanel(
       plotOutput("distPlot"),
-      p("This is a histogram of the either", code(strong("Number of Eruptions")), "or", code(strong("Waiting Time.")), 
+      p("Note: This is a histogram of the either", code(strong("Number of Eruptions")), "or", code(strong("Waiting Time.")), 
         style = "font-family: 'times'; font-si16pt"),
       dataTableOutput("stats")
     ) # Close the main panel
