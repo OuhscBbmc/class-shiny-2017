@@ -32,7 +32,15 @@ shinyUI(fluidPage(
         label   = "Write something about the graph here.",
         width   = '300%'),
       
-      submitButton("Submit")
+      submitButton("Submit"),
+      hr(),
+      br(),
+      br(),
+      br(),
+      br(),
+      br(),
+      img(src = "rstudio-logo-ball.png", height = 72, width = 72),
+      "Shiny is a product of ", span("Rstudio.", style = "color:blue")
     ), #Close the sidebar panel
     
     mainPanel(
