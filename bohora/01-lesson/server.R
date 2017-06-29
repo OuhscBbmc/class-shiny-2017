@@ -19,8 +19,8 @@ shinyServer(function(input, output){
   output$stats <- renderDataTable({
     library(DT)
     selected_column_name    <- input$e6
-    x <- faithful[, selected_column_name]
-    summary_table <- round((psych::describe(x))[-1],2)
+    x <- faithful[, "waiting"]
+    summary_table <- as.data.frame(round(psych::describe(x),2))[,-1]
     rownames(summary_table) <- NULL
     names(summary_table) <- Hmisc::capitalize(names(summary_table))
     datatable(summary_table, 
@@ -29,3 +29,4 @@ shinyServer(function(input, output){
                 htmltools::strong(paste("Table 1: Descriptive summary for", selected_column_name))))
   })
 })
+
