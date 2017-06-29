@@ -39,8 +39,8 @@ shinyUI(fluidPage(
       br(),
       br(),
       br(),
-      img(src = "rstudio-logo-ball.png", height = 72, width = 72),
-      "Shiny is a product of ", span("Rstudio.", style = "color:blue")
+      tags$a(href = "www.rstudio.com", img(src = "rstudio-logo-ball.png", height = 72, width = 72)),
+      "Shiny is a product of ", span(tags$a(href = "www.rstudio.com", "Rstudio."), style = "color:blue")
     ), #Close the sidebar panel
     
     mainPanel(
@@ -54,4 +54,4 @@ shinyUI(fluidPage(
 )) # Close the page
 
 
-
+names(tags)
