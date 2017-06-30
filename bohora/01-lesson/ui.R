@@ -1,11 +1,13 @@
 library(shiny)
 
 shinyUI(fluidPage(
+  shinyjs::useShinyjs(),
 
   titlePanel("Hello Shiny"),
 
   sidebarLayout(
     sidebarPanel(
+      tags$form (
       sliderInput(
         inputId   = "slider_bin_count",
         label     = "Number of bins:",
@@ -25,14 +27,22 @@ shinyUI(fluidPage(
           placeholder = 'Please select an option below',
           onInitialize = I(sprintf('function() { this.setValue("%s"); }', colnames(faithful)[1]))
         )
+        # actionButton("submitText1", "Submit text")
       ),
       
-      textInput(
-        inputId = "explain_graph",
-        label   = "Write something about the graph here.",
-        width   = '300%'),
+      br(),
+      br()
+      ),
       
-      submitButton("Submit"),
+      tags$form (
+        textInput(
+        inputId = "explain_graph",
+        label   = 'Write something about the graph here. Press "Enter" when done.',
+        width   = '300%',
+        placeholder = "Explain graph here here."),
+        actionButton("submitText", "Submit text")
+      ),
+      
       hr(),
       br(),
       br(),
@@ -45,9 +55,11 @@ shinyUI(fluidPage(
     
     mainPanel(
       plotOutput("distPlot"),
-      p("Note: This is a histogram of the either", code(strong("Number of Eruptions")), "or", code(strong("Waiting Time.")), 
-        style = "font-family: 'times'; font-si16pt"),
-      verbatimTextOutput("explain_graph"),
+      p("Note: This is a histogram of the either", code(strong("Number of Eruptions")), "or", code(strong("Waiting Time")), "as shown above", 
+        style = "font-family: 'times'; font-size: 14pt"),
+      p(strong("Graph explanation:"), style = "font-family: 'times'; font-size: 18pt", textOutput("out_explain_graph")),
+      br(),
+      br(),
       dataTableOutput("stats")
     ) # Close the main panel
   ) # Close the layout
