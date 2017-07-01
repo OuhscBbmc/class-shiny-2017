@@ -1,7 +1,6 @@
 library(shiny)
 
 shinyUI(fluidPage(
-  shinyjs::useShinyjs(),
 
   titlePanel("Hello Shiny"),
 
