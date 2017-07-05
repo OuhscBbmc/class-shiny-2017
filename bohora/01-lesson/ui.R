@@ -36,7 +36,7 @@ shinyUI(fluidPage(
       tags$form (
         textInput(
         inputId = "explain_graph",
-        label   = 'Write something about the graph here. Press "Enter" when done.',
+        label   = 'Write something about the graph here.',
         width   = '300%',
         placeholder = "Explain graph here here."),
         actionButton("submitText", "Submit text")
@@ -63,6 +63,3 @@ shinyUI(fluidPage(
     ) # Close the main panel
   ) # Close the layout
 )) # Close the page
-
-
-names(tags)
