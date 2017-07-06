@@ -7,9 +7,13 @@ shinyServer(function(input, output){
     x <- faithful[, selected_column_name]
     bins <- seq(min(x), max(x), length.out = input$slider_bin_count + 1)
     
-    hist(x, breaks = bins, col = "darkblue", border = "red", 
+    hist(x, breaks = bins, col = "darkblue", border = "yellow", 
+         probability = TRUE,
          main = paste("Histogram of", Hmisc::capitalize(selected_column_name)),
          xlab = paste("Number of", Hmisc::capitalize(selected_column_name)))
+    
+    dens <- density(x, adjust = input$adjust_bw)
+    lines(dens, col = "red", type = "l", pch = 22, lty = 1, lwd = 2.5)
   })
   
     output$out_explain_graph <- renderText({

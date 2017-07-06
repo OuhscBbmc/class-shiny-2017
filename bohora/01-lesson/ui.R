@@ -14,6 +14,13 @@ shinyUI(fluidPage(
         max       = 50,
         value     = 30
       ),
+      
+      sliderInput("adjust_bw",
+        label     = " Bandwidth adjustment",
+        min       = 0.2,
+        max       = 2,
+        value     = 1,
+        step      = 0.2),
       # I() indicates it is raw JavaScript code that should be evaluated, instead
       # of a normal character string
       selectizeInput(
