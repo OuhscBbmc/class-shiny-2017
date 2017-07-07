@@ -12,8 +12,14 @@ shinyServer(function(input, output){
          main = paste("Histogram of", Hmisc::capitalize(selected_column_name)),
          xlab = paste("Number of", Hmisc::capitalize(selected_column_name)))
     
+    if(input$density){
     dens <- density(x, adjust = input$adjust_bw)
     lines(dens, col = "red", type = "l", pch = 22, lty = 1, lwd = 2.5)
+    }
+    
+    if (input$individual_obs) {
+      graphics::rug(faithful[,selected_column_name])
+    }
   })
   
     output$out_explain_graph <- renderText({
