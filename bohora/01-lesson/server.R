@@ -4,21 +4,26 @@ shinyServer(function(input, output){
   
   output$distPlot <- renderPlot({
     selected_column_name    <- input$e6
-    x <- faithful[, selected_column_name]
-    bins <- seq(min(x), max(x), length.out = input$slider_bin_count + 1)
-    
-    hist(x, breaks = bins, col = "darkblue", border = "yellow", 
-         probability = TRUE,
-         main = paste("Histogram of", Hmisc::capitalize(selected_column_name)),
-         xlab = paste("Number of", Hmisc::capitalize(selected_column_name)))
-    
+    x <- unlist(ds_health[selected_column_name])
+
+    if (class(x) == "numeric"){
+      bins <- seq(min(x), max(x), length.out = input$slider_bin_count + 1)
+      
+      hist(x, breaks = bins, col = "darkblue", border = "yellow", probability = TRUE,
+           main = paste("Histogram of", Hmisc::capitalize(selected_column_name)),
+           xlab = paste("Number of", Hmisc::capitalize(selected_column_name)))
+      } else {
+        barplot(table(x), xlab = paste("Levels of", toupper(selected_column_name)), 
+                ylab = "N", main = paste("Bar plot of", toupper(selected_column_name)))
+      }  
+
     if(input$density){
     dens <- density(x, adjust = input$adjust_bw)
     lines(dens, col = "red", type = "l", pch = 22, lty = 1, lwd = 2.5)
     }
     
     if (input$individual_obs) {
-      graphics::rug(faithful[,selected_column_name])
+      graphics::rug(unlist(ds_health[selected_column_name]))
     }
   })
   
@@ -30,7 +35,7 @@ shinyServer(function(input, output){
   output$stats <- renderDataTable({
     library(DT)
     selected_column_name    <- input$e6
-    x <- faithful[, selected_column_name]
+    x <- ds_health[, selected_column_name]
     summary_table <- as.data.frame(round(psych::describe(x),2))[,-1]
     rownames(summary_table) <- NULL
     names(summary_table) <- Hmisc::capitalize(names(summary_table))
@@ -41,3 +46,5 @@ shinyServer(function(input, output){
   })
 })
 
+
+hist(x)

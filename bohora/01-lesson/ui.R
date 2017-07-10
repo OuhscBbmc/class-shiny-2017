@@ -2,7 +2,7 @@ library(shiny)
 
 shinyUI(fluidPage(
 
-  titlePanel("Hello Shiny"),
+  titlePanel("Life Expectancy & Expenditure"),
 
   sidebarLayout(
     sidebarPanel(
@@ -11,11 +11,11 @@ shinyUI(fluidPage(
           inputId    = 'e6',
           label      = 'Placeholder',
           # choices    = c("eruptions", "waiting"),
-          choices    = colnames(faithful),
-          # selected   = "eruptions",
+          choices    = colnames(ds_health),
+          # selected   = "Life.Expectancy",
           options    = list(
             placeholder = 'Please select an option below',
-            onInitialize = I(sprintf('function() { this.setValue("%s"); }', colnames(faithful)[1])))
+            onInitialize = I(sprintf('function() { this.setValue("%s"); }', colnames(ds_health)[1])))
           # actionButton("submitText1", "Submit text")
           ),
       sliderInput(
@@ -69,7 +69,7 @@ shinyUI(fluidPage(
     
     mainPanel(
       plotOutput("distPlot"),
-      p("Note: This is a histogram of the either", code(strong("Number of Eruptions")), "or", code(strong("Waiting Time")), "as shown above", "using", a("faithful", href = "http://www.stat.cmu.edu/~larry/all-of-statistics/=data/faithful.dat"), "dataset.",
+      p("Note: This is a histogram of the either", code(strong("Number of Eruptions")), "or", code(strong("Waiting Time")), "as shown above", "using", a("Google health data", href = "https://www.google.com/publicdata/directory"), "dataset.",
         style = "font-family: 'times'; font-size: 14pt"),
       p(strong("Graph explanation:"), style = "font-family: 'times'; font-size: 18pt", textOutput("out_explain_graph")),
       br(),
