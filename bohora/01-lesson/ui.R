@@ -69,7 +69,7 @@ shinyUI(fluidPage(
     
     mainPanel(
       plotOutput("distPlot"),
-      p("Note: This is a histogram of the either", code(strong("Number of Eruptions")), "or", code(strong("Waiting Time")), "as shown above", "using", a("Google health data", href = "https://www.google.com/publicdata/directory"), "dataset.",
+      p("Note: This is a Shiny application to describe the data obtained from", a("public Google health data", href = "https://www.google.com/publicdata/directory"), "dataset.",
         style = "font-family: 'times'; font-size: 14pt"),
       p(strong("Graph explanation:"), style = "font-family: 'times'; font-size: 18pt", textOutput("out_explain_graph")),
       br(),

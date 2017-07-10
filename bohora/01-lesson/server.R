@@ -35,7 +35,9 @@ shinyServer(function(input, output){
   output$stats <- renderDataTable({
     library(DT)
     selected_column_name    <- input$e6
-    x <- ds_health[, selected_column_name]
+    x <- unlist(ds_health[selected_column_name])
+    
+    if (class(x) == "numeric"){
     summary_table <- as.data.frame(round(psych::describe(x),2))[,-1]
     rownames(summary_table) <- NULL
     names(summary_table) <- Hmisc::capitalize(names(summary_table))
@@ -43,8 +45,13 @@ shinyServer(function(input, output){
               caption = htmltools::tags$caption(
                 style = "font-size:200%",
                 htmltools::strong(paste("Table 1: Descriptive summary for", selected_column_name))))
+    } else {
+      summary_table <- as.data.frame(table(x))
+      colnames(summary_table) <- c(selected_column_name, "Frequency")
+      datatable(summary_table,
+                caption = htmltools::tags$caption(
+                style = "font-size:200%",
+                htmltools::strong(paste("Table 1: Descriptive summary for", selected_column_name))))
+    }
   })
 })
-
-
-hist(x)
