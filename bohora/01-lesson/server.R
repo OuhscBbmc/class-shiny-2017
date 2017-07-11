@@ -33,7 +33,11 @@ shinyServer(function(input, output){
     selected_second_column  <- as.name(input$second_var)
     
     ggplot(ds_health,aes_string(selected_column_name,selected_second_column))+ geom_point() +
-      geom_smooth(method = "loess",formula=y~x)
+      geom_smooth(method = "loess",formula=y~x) + 
+      ggtitle(paste("Correlation between", selected_column_name, "and", selected_second_column )) +
+      theme(plot.title = element_text(lineheight=3, face="bold", color="black", size=18, hjust = 0.5),
+            axis.text = element_text(size=12),
+            axis.title = element_text(size = 15 ))
   })
   
     output$out_explain_graph <- renderText({
