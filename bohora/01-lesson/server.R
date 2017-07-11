@@ -1,9 +1,10 @@
 library(shiny)
+library(ggplot2)
 
 shinyServer(function(input, output){
   
   output$distPlot <- renderPlot({
-    selected_column_name    <- input$e6
+    selected_column_name    <- input$first_var
     x <- unlist(ds_health[selected_column_name])
 
     if (class(x) == "numeric"){
@@ -27,6 +28,14 @@ shinyServer(function(input, output){
     }
   })
   
+  output$corrPlot <- renderPlot({
+    selected_column_name    <- as.name(input$first_var)
+    selected_second_column  <- as.name(input$second_var)
+    
+    ggplot(ds_health,aes_string(selected_column_name,selected_second_column))+ geom_point() +
+      geom_smooth(method = "loess",formula=y~x)
+  })
+  
     output$out_explain_graph <- renderText({
     input$submitText
     isolate(input$explain_graph)
@@ -34,7 +43,7 @@ shinyServer(function(input, output){
 
   output$stats <- renderDataTable({
     library(DT)
-    selected_column_name    <- input$e6
+    selected_column_name    <- input$first_var
     x <- unlist(ds_health[selected_column_name])
     
     if (class(x) == "numeric"){
