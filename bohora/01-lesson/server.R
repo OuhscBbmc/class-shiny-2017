@@ -52,19 +52,20 @@ shinyServer(function(input, output){
     
     if (class(x) == "numeric"){
     summary_table <- as.data.frame(round(psych::describe(x),2))[,-1]
-    rownames(summary_table) <- NULL
     names(summary_table) <- Hmisc::capitalize(names(summary_table))
     datatable(summary_table, 
               caption = htmltools::tags$caption(
                 style = "font-size:200%",
-                htmltools::strong(paste("Table 1: Descriptive summary for", selected_column_name))))
+                htmltools::strong(paste("Table 1: Descriptive summary for", selected_column_name))),
+              rownames = FALSE)
     } else {
       summary_table <- as.data.frame(table(x))
       colnames(summary_table) <- c(selected_column_name, "Frequency")
       datatable(summary_table,
                 caption = htmltools::tags$caption(
                 style = "font-size:200%",
-                htmltools::strong(paste("Table 1: Descriptive summary for", selected_column_name))))
+                htmltools::strong(paste("Table 1: Descriptive summary for", selected_column_name))),
+                rownames = FALSE)
     }
   })
 })
