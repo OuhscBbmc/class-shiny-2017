@@ -15,7 +15,7 @@ shinyUI(fluidPage(
           # selected   = "Life.Expectancy",
           options    = list(
             placeholder = 'Please select an option below',
-            onInitialize = I(sprintf('function() { this.setValue("%s"); }', colnames(ds_health)[1])))
+            onInitialize = I(sprintf('function() { this.setValue("%s"); }', colnames(ds_health)[6])))
           # actionButton("submitText1", "Submit text")
           ),
         selectizeInput(
@@ -24,7 +24,7 @@ shinyUI(fluidPage(
           choices    = numeric_columns,
           options    = list(
             placeholder = 'Please select an option below',
-            onInitialize = I(sprintf('function() { this.setValue("%s"); }', numeric_columns[1])))
+            onInitialize = I(sprintf('function() { this.setValue("%s"); }', numeric_columns[3])))
           # actionButton("submitText1", "Submit text")
         ),
         sliderInput(
