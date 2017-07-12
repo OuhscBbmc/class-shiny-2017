@@ -60,7 +60,9 @@ shinyServer(function(input, output){
               rownames = FALSE)
     } else {
       summary_table <- as.data.frame(table(x))
-      colnames(summary_table) <- c(selected_column_name, "Frequency")
+      summary_table$cum_sum <- cumsum(summary_table$Freq)
+      summary_table$row_percent <- sprintf("%.2f%%", 100 * (summary_table$Freq / sum(summary_table$Freq)))
+      colnames(summary_table) <- c(selected_column_name, "Frequency", "Cumulative Count", "% of Total")
       datatable(summary_table,
                 caption = htmltools::tags$caption(
                 style = "font-size:200%",
@@ -69,3 +71,4 @@ shinyServer(function(input, output){
     }
   })
 })
+
