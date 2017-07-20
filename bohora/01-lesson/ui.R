@@ -6,6 +6,7 @@ shinyUI(fluidPage(
 
   sidebarLayout(
     sidebarPanel(
+      width = 3,
       tags$form (
         selectizeInput(
           inputId    = 'first_var',
@@ -72,7 +73,11 @@ shinyUI(fluidPage(
         br(),
         br(),
         tags$a(href = "www.rstudio.com", img(src = "rstudio-logo-ball.png", height = 72, width = 72)),
-        "Shiny is a product of ", span(tags$a(href = "www.rstudio.com", "Rstudio."), style = "color:blue")
+        "Shiny is a product of ", span(tags$a(href = "www.rstudio.com", "Rstudio."), style = "color:blue"),
+      tags$style("body{background-color:linen; color: black"),
+      tags$style(".container-fluid{font-style:normal; color: brown"),
+      tags$style(".col-sm-3{font-style:normal; border-style: solid; color: black"),
+      tags$style(".col-sm-6{font-style:oblique; border-style: solid; color: black")
     ), #Close the sidebar panel
     
     mainPanel(
